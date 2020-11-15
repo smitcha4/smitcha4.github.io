@@ -110,3 +110,44 @@ document.addEventListener('DOMContentLoaded', function(){
 //http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php
 //http://httpbin.org/post
 
+//**********************ADD-ON MAP WEATHER FORECAST*************************/
+document.addEventListener('DOMContentLoaded', function(){
+    if(document.body.classList.contains('mapClass')){
+        var req = new XMLHttpRequest();
+        req.open("GET", "https://api.openweathermap.org/data/2.5/onecall?lat=32.9847&lon=-97.0875&appid=99fc10e16dc88dd8e9f54a5f3f0bcc2d&units=imperial", true);
+
+        req.addEventListener('load', function(){
+          if(req.status>=200 && req.status<400){
+            var weather = JSON.parse(req.response); //getting the returned & parsed object
+            console.log(weather);
+            for(x=0; x<5; x++){
+                document.getElementById('description'+x).textContent = weather.daily[x].weather[0].description
+                document.getElementById('highLow'+x).textContent = Math.trunc(weather.daily[x].temp.max)+'°/'+ Math.trunc(weather.daily[x].temp.min)+'°';
+
+                var day0 = new Date();
+                document.getElementById('date0').textContent = (day0.getMonth()+1)+'/'+day0.getDate();
+                var day1 = new Date();
+                day1.setDate(day0.getDate()+1)
+                document.getElementById('date1').textContent = (day1.getMonth()+1)+'/'+day1.getDate();
+
+                var day2 = new Date();
+                day1.setDate(day0.getDate()+2)
+                document.getElementById('date2').textContent = (day1.getMonth()+1)+'/'+day1.getDate();
+
+                var day3 = new Date();
+                day1.setDate(day0.getDate()+3)
+                document.getElementById('date3').textContent = (day1.getMonth()+1)+'/'+day1.getDate();
+
+                var day4 = new Date();
+                day1.setDate(day0.getDate()+4)
+                document.getElementById('date4').textContent = (day1.getMonth()+1)+'/'+day1.getDate();
+            }
+          }else{
+            console.log("Request Error: " + req.statusText)
+            }
+          })
+        req.send(null);
+        //event.preventDefault();
+    }
+});
+
