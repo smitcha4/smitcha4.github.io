@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if(/\S+@\S+\.\S+/.test(userString)){
                     //*********Submit User Provided Data**********
                 var req = new XMLHttpRequest();
-                req.open('POST', "http://httpbin.org/post", true);
+                req.open('POST', "https://httpbin.org/post", true);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.addEventListener('load', function(){
                     if(req.status>=200 && req.status<400){
@@ -107,8 +107,6 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 });
-//http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php
-//http://httpbin.org/post
 
 //**********************ADD-ON MAP WEATHER FORECAST*************************/
 document.addEventListener('DOMContentLoaded', function(){
