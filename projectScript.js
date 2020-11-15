@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function(){
             startInterval();
         })
 
-        //photo forward
+
         document.getElementById("photoForward").addEventListener('click', function(){
             stopInterval();
             if(document.body.classList.contains('mainClass')){
@@ -77,22 +77,36 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 })
 
-
-//email post request 
 document.addEventListener('DOMContentLoaded', function(){
     if(document.body.classList.contains("costsClass")){
-        emailSubmitted();
+        document.getElementById('formSubmit').addEventListener('click', function(event){
+            var userString = document.getElementById("emailAddress").value;
+            var validEmail = true;
+
+            if(/\S+@\S+\.\S+/.test(userString)){
+                    //*********Submit User Provided Data**********
+                var req = new XMLHttpRequest();
+                req.open('POST', "http://httpbin.org/post", true);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.addEventListener('load', function(){
+                    if(req.status>=200 && req.status<400){
+                        console.log(JSON.parse(req.responseText));
+                    }
+                });
+                console.log(document.getElementById("emailAddress").value); //email string is received
+                req.send(JSON.stringify(document.getElementById("emailAddress").value));
+                event.preventDefault();
+            }else{
+                alert("Please enter a valid email address.");
+                validEmail = false;
+            }
+            //queryselector returns first element wich is a match
+            var emailElement = document.querySelector('input');
+            emailElement.value = '';
+            document.getElementById("thankYouMsg").textContent="Thank you! You are now signed up to receive promotions.";
+        });
     }
 });
+//http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php
+//http://httpbin.org/post
 
-function emailSubmitted(){
-  document.getElementById('formSubmit').addEventListener('click', function(event){
-    userText = document.getElementById("emailAddress").value;
-    console.log(userText)
-    var emailReq = new XMLHttpRequest();
-    emailReq.open('POST', "http://httpbin.org/post", true);
-    emailReq.setRequestHeader('Content-Type', 'application/json');
-    emailReq.send(document.getElementById("emailAddress").value);
-    event.preventDefault();
-  })
-}

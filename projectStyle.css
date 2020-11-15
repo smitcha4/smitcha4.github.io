@@ -10,9 +10,6 @@ body {
 
 h1{
     background-image: url("top1.jpg");
-      /* Set a specific height */
-
-  /* Position and center the image to scale nicely on all screens */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -54,9 +51,6 @@ a:hover{
 
 .mainContent {
     text-align: left;
-    /*
-    margin-right: clamp(2px, 30%, 40%);
-    margin-left: clamp(2px, 30%, 40%);*/
     width: min(720px, 80%);
     margin: auto;
 }
@@ -67,14 +61,14 @@ a:hover{
     color: lightsteelblue;
 }
 
-.button1{
+.button1, #formSubmit{
     cursor: pointer;
     background-color: rgb(39, 39, 39);
     color: lightsteelblue;
     font-size: 16px;
     font-style: italic;
 }
-.button1:hover{
+.button1:hover, #formSubmit{
     background-color: rgb(104, 104, 104);
 }
 
@@ -110,6 +104,10 @@ h2, h3 {
     border-right:15px solid lightslategray; 
 }
 
+.photoMove{
+    cursor: pointer;
+}
+
 .space{
       display: inline-block;
       width: 10px;
@@ -129,7 +127,6 @@ h2, h3 {
     height: 480px;
     font-size: 22px;
     color: lightslategray;
-    /*font: "Fira Sans", sans-serif;*/
     overflow-y: scroll;
     background-image: linear-gradient(to bottom, rgb(72, 124, 148), rgb(39, 39, 39));
     margin-left: auto;
