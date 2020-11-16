@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function(){
             startInterval();
         })
 
-
         document.getElementById("photoForward").addEventListener('click', function(){
             stopInterval();
             if(document.body.classList.contains('mainClass')){
@@ -84,16 +83,16 @@ document.addEventListener('DOMContentLoaded', function(){
             var validEmail = true;
 
             if(/\S+@\S+\.\S+/.test(userString)){
-                    //*********Submit User Provided Data**********
+                //*********Submit User Provided Data**********
                 var req = new XMLHttpRequest();
-                req.open('POST', "https://httpbin.org/post", true);
+                req.open('POST', "http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php", true);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.addEventListener('load', function(){
                     if(req.status>=200 && req.status<400){
                         console.log(JSON.parse(req.responseText));
                     }
                 });
-                console.log(document.getElementById("emailAddress").value); //email string is received
+                // console.log(document.getElementById("emailAddress").value); email string is received
                 req.send(JSON.stringify(document.getElementById("emailAddress").value));
                 event.preventDefault();
             }else{
@@ -117,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function(){
         req.addEventListener('load', function(){
           if(req.status>=200 && req.status<400){
             var weather = JSON.parse(req.response); //getting the returned & parsed object
-            console.log(weather);
+            //console.log(weather);
             for(x=0; x<5; x++){
                 document.getElementById('description'+x).textContent = weather.daily[x].weather[0].description
                 document.getElementById('highLow'+x).textContent = Math.trunc(weather.daily[x].temp.max)+'°/'+ Math.trunc(weather.daily[x].temp.min)+'°';
@@ -145,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function(){
             }
           })
         req.send(null);
-        //event.preventDefault();
     }
 });
 
