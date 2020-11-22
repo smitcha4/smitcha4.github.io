@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if(/\S+@\S+\.\S+/.test(userString)){
                 //*********Submit User Provided Data**********
                 var req = new XMLHttpRequest();
-                req.open('POST', "http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php", true);
+                req.open('POST', "https://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php", true);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.addEventListener('load', function(){
                     if(req.status>=200 && req.status<400){
